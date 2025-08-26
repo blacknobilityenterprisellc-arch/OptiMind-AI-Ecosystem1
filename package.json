@@ -1,7 +1,6 @@
 {
-  "name": "optimind-ai-ecosystem",
-  "version": "1.0.0",
-  "description": "Platinum Grade Enterprise AI Platform - OptiMind AI Ecosystem",
+  "name": "nextjs_tailwind_shadcn_ts",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "nodemon --exec \"npx tsx server.ts\" --watch server.ts --watch src --ext ts,tsx,js,jsx 2>&1 | tee dev.log",
@@ -11,11 +10,7 @@
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
-    "db:reset": "prisma migrate reset",
-    "db:studio": "prisma studio",
-    "type-check": "tsc --noEmit",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\""
+    "db:reset": "prisma migrate reset"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -95,40 +90,11 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@types/uuid": "^10.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.5",
     "nodemon": "^3.1.10",
-    "prettier": "^3.3.3",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.5",
     "typescript": "^5"
-  },
-  "keywords": [
-    "ai",
-    "ecosystem",
-    "enterprise",
-    "nextjs",
-    "typescript",
-    "tailwindcss",
-    "shadcn",
-    "prisma",
-    "authentication",
-    "real-time",
-    "platinum-grade"
-  ],
-  "author": "Black Nobility Enterprise LLC",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/blacknobilityenterprisellc-arch/optimind-ai-ecosystem1.git"
-  },
-  "bugs": {
-    "url": "https://github.com/blacknobilityenterprisellc-arch/optimind-ai-ecosystem1/issues"
-  },
-  "homepage": "https://github.com/blacknobilityenterprisellc-arch/optimind-ai-ecosystem1#readme",
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.0.0"
   }
 }

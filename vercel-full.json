@@ -1,0 +1,177 @@
+{
+  "name": "nextjs-tailwind-shadcn-ts",
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "env": {
+    "DATABASE_URL": "file:./dev.db",
+    
+    // === Z.Ai GLM Models ===
+    "ZAI_API_KEY": "",
+    "ZAI_BASE_URL": "https://api.z-ai.com/v1",
+    "GLM_45V_MODEL": "glm-4.5v",
+    "GLM_45_AUTO_THINK_MODEL": "glm-45-auto-think",
+    "GLM_45_FLAGSHIP_MODEL": "glm-45-flagship",
+    "GLM_45_FULL_STACK_MODEL": "glm-45-full-stack",
+    "AIR_MODEL": "air",
+    
+    // === OpenAI Models ===
+    "OPENAI_API_KEY": "",
+    "OPENAI_ORG_ID": "",
+    "OPENAI_BASE_URL": "https://api.openai.com/v1",
+    "GPT_4O_MODEL": "gpt-4o",
+    "GPT_4O_MINI_MODEL": "gpt-4o-mini",
+    "GPT_4_TURBO_MODEL": "gpt-4-turbo",
+    "O1_MODEL": "o1",
+    "O1_MINI_MODEL": "o1-mini",
+    
+    // === Anthropic Claude Models ===
+    "ANTHROPIC_API_KEY": "",
+    "ANTHROPIC_BASE_URL": "https://api.anthropic.com",
+    "CLAUDE_35_SONNET_MODEL": "claude-3-5-sonnet-20241022",
+    "CLAUDE_35_HAIKU_MODEL": "claude-3-5-haiku-20241022",
+    "CLAUDE_3_OPUS_MODEL": "claude-3-opus-20240229",
+    
+    // === Google Gemini Models ===
+    "GOOGLE_AI_API_KEY": "",
+    "GOOGLE_BASE_URL": "https://generativelanguage.googleapis.com/v1beta",
+    "GEMINI_15_FLASH_MODEL": "gemini-1.5-flash",
+    "GEMINI_15_PRO_MODEL": "gemini-1.5-pro",
+    "GEMINI_20_FLASH_EXP_MODEL": "gemini-2.0-flash-exp",
+    "GEMINI_20_FLASH_THINKING_MODEL": "gemini-2.0-flash-thinking-exp",
+    
+    // === Mistral AI Models ===
+    "MISTRAL_API_KEY": "",
+    "MISTRAL_BASE_URL": "https://api.mistral.ai/v1",
+    "MISTRAL_LARGE_MODEL": "mistral-large-latest",
+    "MISTRAL_NEXT_MODEL": "mistral-next-latest",
+    "MISTRAL_NEMO_MODEL": "open-mistral-nemo",
+    "CODESTRAL_MODEL": "codestral-latest",
+    
+    // === Groq Models ===
+    "GROQ_API_KEY": "",
+    "GROQ_BASE_URL": "https://api.groq.com/openai/v1",
+    "LLAMA_31_70B_MODEL": "llama-3.1-70b-versatile",
+    "LLAMA_31_8B_MODEL": "llama-3.1-8b-instant",
+    "MIXTRAL_8X7B_MODEL": "mixtral-8x7b-32768",
+    "GEMMA_27B_MODEL": "gemma-2-27b-it",
+    
+    // === Hugging Face Models ===
+    "HUGGINGFACE_API_KEY": "",
+    "HUGGINGFACE_BASE_URL": "https://api-inference.huggingface.co/models",
+    "HUGGINGFACE_INFERENCE_API": "https://api.inference.huggingface.co",
+    "LLAMA_31_405B_MODEL": "meta-llama/Meta-Llama-3.1-405B-Instruct",
+    "QWEN_25_72B_MODEL": "Qwen/Qwen2.5-72B-Instruct",
+    "MIXTRAL_8X22B_MODEL": "mistralai/Mixtral-8x22B-v0.1",
+    
+    // === Perplexity AI ===
+    "PERPLEXITY_API_KEY": "",
+    "PERPLEXITY_BASE_URL": "https://api.perplexity.ai",
+    "LLAMA_31_SONAR_MODEL": "llama-3.1-sonar-large-128k-online",
+    "LLAMA_31_SONAR_HUGE_MODEL": "llama-3.1-sonar-huge-128k-online",
+    
+    // === Cohere Models ===
+    "COHERE_API_KEY": "",
+    "COHERE_BASE_URL": "https://api.cohere.com/v1",
+    "COMMAND_R_PLUS_MODEL": "command-r-plus-08-2024",
+    "COMMAND_R_MODEL": "command-r-08-2024",
+    
+    // === Together AI ===
+    "TOGETHER_API_KEY": "",
+    "TOGETHER_BASE_URL": "https://api.together.xyz/v1",
+    "META_LLAMA_31_405B_MODEL": "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
+    "META_LLAMA_33_70B_MODEL": "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+    
+    // === Fireworks AI ===
+    "FIREWORKS_API_KEY": "",
+    "FIREWORKS_BASE_URL": "https://api.fireworks.ai/inference/v1",
+    "LLAMA_V3_405B_MODEL": "accounts/fireworks/models/llama-v3p1-405b-instruct",
+    "MIXTRAL_8X22B_MODEL": "accounts/fireworks/models/mixtral-8x22b-v0.1",
+    
+    // === Replicate Models ===
+    "REPLICATE_API_TOKEN": "",
+    "REPLICATE_BASE_URL": "https://api.replicate.com/v1",
+    "FLUX_PRO_MODEL": "black-forest-labs/flux-pro",
+    "FLUX_SCHNELL_MODEL": "black-forest-labs/flux-schnell",
+    
+    // === Stability AI (Image Generation) ===
+    "STABILITY_API_KEY": "",
+    "STABILITY_BASE_URL": "https://api.stability.ai/v1",
+    "SD_3_5_MEDIUM_MODEL": "stable-diffusion-3-5-medium",
+    "SD_3_5_LARGE_MODEL": "stable-diffusion-3-5-large",
+    
+    // === ElevenLabs (Voice AI) ===
+    "ELEVENLABS_API_KEY": "",
+    "ELEVENLABS_BASE_URL": "https://api.elevenlabs.io/v1",
+    "ELEVEN_MULTILINGUAL_V2_MODEL": "eleven_multilingual_v2",
+    "ELEVEN_TURBO_V2_MODEL": "eleven_turbo_v2",
+    
+    // === LangChain Configuration ===
+    "LANGCHAIN_TRACING_V2": "true",
+    "LANGCHAIN_ENDPOINT": "https://api.smith.langchain.com",
+    "LANGCHAIN_API_KEY": "",
+    "LANGCHAIN_PROJECT": "nextjs-ai-app",
+    
+    // === Vector Database (for RAG) ===
+    "PINECONE_API_KEY": "",
+    "PINECONE_ENVIRONMENT": "gcp-starter",
+    "PINECONE_INDEX_NAME": "ai-app-index",
+    
+    "QDRANT_API_KEY": "",
+    "QDRANT_URL": "https://your-qdrant-cluster.qdrant.tech",
+    "QDRANT_COLLECTION_NAME": "ai-app-collection",
+    
+    // === Redis (Caching & Sessions) ===
+    "REDIS_URL": "",
+    "REDIS_HOST": "",
+    "REDIS_PORT": "6379",
+    "REDIS_PASSWORD": "",
+    
+    // === Authentication ===
+    "NEXTAUTH_URL": "",
+    "NEXTAUTH_SECRET": "",
+    "GITHUB_CLIENT_ID": "",
+    "GITHUB_CLIENT_SECRET": "",
+    "GOOGLE_CLIENT_ID": "",
+    "GOOGLE_CLIENT_SECRET": "",
+    
+    // === Monitoring & Analytics ===
+    "SENTRY_DSN": "",
+    "VERCEL_ANALYTICS_ID": "",
+    "POSTHOG_API_KEY": "",
+    "POSTHOG_HOST": "https://app.posthog.com",
+    
+    // === Additional AI Services ===
+    "BRIGHTDATA_API_KEY": "",
+    "SCRAPINGDOG_API_KEY": "",
+    "SERPAPI_API_KEY": "",
+    "TWITTER_API_KEY": "",
+    "TWITTER_API_SECRET": "",
+    "TWITTER_ACCESS_TOKEN": "",
+    "TWITTER_ACCESS_TOKEN_SECRET": "",
+    
+    // === File Storage ===
+    "AWS_ACCESS_KEY_ID": "",
+    "AWS_SECRET_ACCESS_KEY": "",
+    "AWS_REGION": "us-east-1",
+    "AWS_S3_BUCKET": "",
+    
+    "CLOUDFLARE_R2_ACCESS_KEY_ID": "",
+    "CLOUDFLARE_R2_SECRET_ACCESS_KEY": "",
+    "CLOUDFLARE_R2_BUCKET": "",
+    "CLOUDFLARE_R2_ACCOUNT_ID": ""
+  },
+  "buildCommand": "npm run db:generate && npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install && npx prisma generate"
+}

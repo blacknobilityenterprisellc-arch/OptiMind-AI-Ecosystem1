@@ -1,0 +1,22 @@
+{
+  "name": "nextjs-tailwind-shadcn-ts",
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "env": {
+    "DATABASE_URL": "file:./dev.db"
+  },
+  "buildCommand": "npm run db:generate && npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install && npx prisma generate"
+}

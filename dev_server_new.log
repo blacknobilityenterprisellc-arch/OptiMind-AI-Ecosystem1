@@ -1,0 +1,90 @@
+
+> nextjs_tailwind_shadcn_ts@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, using available port 3002 instead.
+   ▲ Next.js 15.3.5
+   - Local:        http://localhost:3002
+   - Network:      http://21.0.12.101:3002
+   - Environments: .env
+   - Experiments (use with caution):
+     ✓ optimizeCss
+
+ ✓ Starting...
+ ✓ Ready in 1877ms
+ ○ Compiling /api/health ...
+ ✓ Compiled /api/health in 3.2s (363 modules)
+ GET /api/health 200 in 3380ms
+ ✓ Compiled /api/models in 305ms (370 modules)
+ ⨯ Error: Cannot find module './chunks/vendor-chunks/next.js'
+Require stack:
+- /home/z/my-project/.next/server/webpack-runtime.js
+- /home/z/my-project/.next/server/app/api/models/route.js
+- /home/z/my-project/node_modules/next/dist/server/require.js
+- /home/z/my-project/node_modules/next/dist/server/load-components.js
+- /home/z/my-project/node_modules/next/dist/build/utils.js
+- /home/z/my-project/node_modules/next/dist/build/swc/options.js
+- /home/z/my-project/node_modules/next/dist/build/swc/index.js
+- /home/z/my-project/node_modules/next/dist/build/next-config-ts/transpile-config.js
+- /home/z/my-project/node_modules/next/dist/server/config.js
+- /home/z/my-project/node_modules/next/dist/server/next.js
+- /home/z/my-project/node_modules/next/dist/server/lib/start-server.js
+    at t.f.require (.next/server/webpack-runtime.js:1:1428)
+    at <unknown> (.next/server/webpack-runtime.js:1:889)
+    at Array.reduce (<anonymous>)
+    at t.e (.next/server/webpack-runtime.js:1:868)
+    at Array.map (<anonymous>)
+    at t.X (.next/server/webpack-runtime.js:1:1189)
+    at <unknown> (.next/server/app/api/models/route.js:163:47)
+    at Object.<anonymous> (.next/server/app/api/models/route.js:166:3) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/api/models'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 2.1s (704 modules)
+ ⨯ Error: Cannot find module './chunks/vendor-chunks/next.js'
+Require stack:
+- /home/z/my-project/.next/server/webpack-runtime.js
+- /home/z/my-project/.next/server/pages/_document.js
+- /home/z/my-project/node_modules/next/dist/server/require.js
+- /home/z/my-project/node_modules/next/dist/server/load-components.js
+- /home/z/my-project/node_modules/next/dist/build/utils.js
+- /home/z/my-project/node_modules/next/dist/build/swc/options.js
+- /home/z/my-project/node_modules/next/dist/build/swc/index.js
+- /home/z/my-project/node_modules/next/dist/build/next-config-ts/transpile-config.js
+- /home/z/my-project/node_modules/next/dist/server/config.js
+- /home/z/my-project/node_modules/next/dist/server/next.js
+- /home/z/my-project/node_modules/next/dist/server/lib/start-server.js
+    at t.f.require (.next/server/webpack-runtime.js:1:1428)
+    at <unknown> (.next/server/webpack-runtime.js:1:889)
+    at Array.reduce (<anonymous>)
+    at t.e (.next/server/webpack-runtime.js:1:868)
+    at Array.map (<anonymous>)
+    at t.X (.next/server/webpack-runtime.js:1:1189)
+    at <unknown> (.next/server/pages/_document.js:63:47)
+    at Object.<anonymous> (.next/server/pages/_document.js:66:3) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Time 6.744964
+ GET /api/models 500 in 6176ms
+[Error: ENOENT: no such file or directory, stat '/home/z/my-project/.next/cache/webpack/server-development/0.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/home/z/my-project/.next/cache/webpack/server-development/0.pack.gz'
+}
+ ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/home/z/my-project/.next/cache/webpack/server-development/0.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/home/z/my-project/.next/cache/webpack/server-development/0.pack.gz'
+}
+ ⨯ unhandledRejection:  [Error: ENOENT: no such file or directory, stat '/home/z/my-project/.next/cache/webpack/server-development/0.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/home/z/my-project/.next/cache/webpack/server-development/0.pack.gz'
+}
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, stat '/home/z/my-project/.next/cache/webpack/server-development/0.pack.gz'
