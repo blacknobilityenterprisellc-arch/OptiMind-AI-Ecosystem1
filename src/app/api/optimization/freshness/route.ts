@@ -117,7 +117,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Content freshness analysis error:', error);
     return NextResponse.json(
-      { error: 'Failed to analyze content freshness', details: error instanceof Error ? error.message : 'Unknown error' },
+      { error: 'Failed to analyze content freshness', details: error.message },
       { status: 500 }
     );
   }

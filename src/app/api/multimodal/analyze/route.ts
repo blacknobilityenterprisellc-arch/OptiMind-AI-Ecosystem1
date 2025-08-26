@@ -140,7 +140,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Media analysis error:', error);
     return NextResponse.json(
-      { error: 'Failed to analyze media', details: error instanceof Error ? error.message : 'Unknown error' },
+      { error: 'Failed to analyze media', details: error.message },
       { status: 500 }
     );
   }

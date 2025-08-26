@@ -715,7 +715,7 @@ export function MultiModelAIAnalyzer({
                           <h5 className="font-medium text-yellow-900">GLM-4.5 Flagship Analysis</h5>
                         </div>
                         <ul className="text-sm text-yellow-800 space-y-1">
-                          <li>• Quantum-level reasoning with unprecedented accuracy</li>
+                          <li>• Advanced-level reasoning with unprecedented accuracy</li>
                           <li>• Hyper-dimensional analysis across multiple contexts</li>
                           <li>• Superintelligence capabilities surpassing all other models</li>
                           <li>• Ultimate precision and perfect comprehension</li>
@@ -765,7 +765,7 @@ export function MultiModelAIAnalyzer({
                         </p>
                         <p>
                           <strong>GLM-4.5 Flagship</strong> represents the pinnacle of AI achievement with 
-                          quantum reasoning, universal comprehension, and superintelligence capabilities 
+                          advanced reasoning, universal comprehension, and superintelligence capabilities 
                           that far surpass all other models.
                         </p>
                         <p>

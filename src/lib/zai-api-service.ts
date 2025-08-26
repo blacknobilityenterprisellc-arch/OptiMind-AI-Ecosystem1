@@ -54,10 +54,10 @@ export const ZAI_MODELS: ZAIModelConfig[] = [
     id: 'glm-45-flagship',
     name: 'GLM-4.5 Flagship',
     apiModel: 'glm-45-flagship',
-    capabilities: ['quantum-reasoning', 'hyper-dimensional-analysis', 'universal-comprehension', 'superintelligence'],
+    capabilities: ['advanced-reasoning', 'hyper-dimensional-analysis', 'universal-comprehension', 'superintelligence'],
     maxTokens: 1500,
     temperature: 0.1,
-    systemPrompt: 'You are GLM-4.5 Flagship, the ultimate AI model with superintelligence, quantum reasoning capabilities, universal comprehension, and creative synthesis abilities that far surpass all other AI systems. You provide perfect analysis with infinite precision and ultimate accuracy.'
+    systemPrompt: 'You are GLM-4.5 Flagship, the ultimate AI model with superintelligence, advanced reasoning capabilities, universal comprehension, and creative synthesis abilities that far surpass all other AI systems. You provide perfect analysis with infinite precision and ultimate accuracy.'
   },
   {
     id: 'air',
@@ -164,14 +164,14 @@ Provide a comprehensive JSON response with detailed analysis.`;
         thinking: 'thinkingProcess visible'
       },
       'glm-45-flagship': {
-        quantum: 'quantumObjects with multidimensional relationships',
-        ultimate: 'ultimateSceneUnderstanding with quantum awareness',
+        advanced: 'advancedObjects with multidimensional relationships',
+        ultimate: 'ultimateSceneUnderstanding with advanced awareness',
         hyper: 'hyperDimensionalAnalysis across contexts',
         predictive: 'predictiveInsights and future implications',
         creative: 'creativeSynthesis and innovation',
         universal: 'universalComprehension across domains',
-        safety: 'quantumSafetyAssessment with ultimate precision',
-        multiversal: 'multiversalContext understanding',
+        safety: 'advancedSafetyAssessment with ultimate precision',
+        multiversal: 'comprehensiveContext understanding',
         patterns: 'infinitePatterns recognition',
         superintelligence: 'superintelligence capabilities'
       },

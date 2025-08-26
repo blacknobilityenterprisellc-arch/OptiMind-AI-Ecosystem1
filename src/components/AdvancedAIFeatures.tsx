@@ -134,8 +134,8 @@ export function AdvancedAIFeatures() {
       {
         id: "glm-45-flagship",
         name: "GLM-4.5 Flagship",
-        description: "Quantum-enhanced superintelligence",
-        capabilities: ["Quantum Computing", "Advanced Analytics", "Predictive Modeling", "Neural Processing"],
+        description: "Advanced-enhanced superintelligence",
+        capabilities: ["Advanced Computing", "Advanced Analytics", "Predictive Modeling", "Neural Processing"],
         performance: 99,
         accuracy: 99,
         speed: 95,

@@ -80,3 +80,335 @@ model SubscriptionUsage {
   
   @@unique([id])
 }
+
+// Research & Strategy Models
+model ContentAnalysis {
+  id                  String   @id @default(cuid())
+  user_id             String?
+  content             String
+  content_type        String   // "blog", "article", "product", "service", "faq"
+  analysis_results    Json     // Store analysis results as JSON
+  optimization_score  Int      // 0-100
+  created_at          DateTime @default(now())
+  updated_at          DateTime @updatedAt
+  
+  @@map("content_analyses")
+}
+
+model CitationOpportunity {
+  id                  String   @id @default(cuid())
+  analysis_id         String?
+  type                String   // "statistic", "fact", "data", "quote"
+  content             String
+  source              String
+  confidence          Int      // 0-100
+  priority            String   // "high", "medium", "low"
+  is_implemented      Boolean  @default(false)
+  created_at          DateTime @default(now())
+  
+  @@map("citation_opportunities")
+}
+
+model EERecommendation {
+  id                  String   @id @default(cuid())
+  analysis_id         String?
+  category            String   // "experience", "expertise", "authoritativeness", "trustworthiness"
+  recommendation      String
+  impact              String   // "high", "medium", "low"
+  implementation      String
+  is_implemented      Boolean  @default(false)
+  created_at          DateTime @default(now())
+  
+  @@map("ee_recommendations")
+}
+
+model KeywordCluster {
+  id                  String   @id @default(cuid())
+  user_id             String?
+  topic               String
+  keywords            Json     // Array of keywords
+  intent              String   // "informational", "commercial", "navigational"
+  volume              Int      // Estimated monthly search volume
+  difficulty          Int      // 0-100
+  created_at          DateTime @default(now())
+  
+  @@map("keyword_clusters")
+}
+
+model BrandMention {
+  id                  String   @id @default(cuid())
+  user_id             String?
+  brand_name          String
+  source              String
+  url                 String?
+  title               String
+  snippet             String
+  sentiment           String   // "positive", "neutral", "negative"
+  authority           Int      // 0-100
+  mention_date        DateTime
+  type                String   // "ai_overview", "featured_snippet", "organic_result", "social_media"
+  created_at          DateTime @default(now())
+  
+  @@map("brand_mentions")
+}
+
+model BrandTrackingReport {
+  id                  String   @id @default(cuid())
+  user_id             String?
+  brand_name          String
+  time_range          Int      // Days (7, 30, 90, 365)
+  total_mentions      Int
+  ai_overview_mentions Int
+  featured_snippet_mentions Int
+  authority_score     Int      // 0-100
+  sentiment_score     Int      // 0-100
+  monthly_growth      Int      // Percentage
+  top_sources         Json     // Array of top sources
+  report_data         Json     // Complete report data
+  created_at          DateTime @default(now())
+  
+  @@map("brand_tracking_reports")
+}
+
+model GeneratedContent {
+  id                  String   @id @default(cuid())
+  user_id             String?
+  topic               String
+  content_type        String   // "blog", "article", "product", "service", "faq"
+  tone                String   // "professional", "casual", "informative", etc.
+  target_audience     String
+  content             String
+  metadata            Json     // Additional metadata
+  word_count          Int
+  created_at          DateTime @default(now())
+  
+  @@map("generated_contents")
+}
+
+model SchemaMarkup {
+  id                  String   @id @default(cuid())
+  analysis_id         String?
+  type                String   // Schema type (FAQPage, HowTo, etc.)
+  fields              Json     // Schema fields as JSON
+  confidence          Int      // 0-100
+  is_implemented      Boolean  @default(false)
+  created_at          DateTime @default(now())
+  
+  @@map("schema_markups")
+}
+
+// Content Optimization Models
+model ContentInventory {
+  id                  String   @id @default(cuid())
+  user_id             String?
+  title               String
+  url                 String?
+  content_type        String   // "blog", "article", "product", "service", "faq"
+  category            String
+  word_count          Int
+  last_updated        DateTime
+  freshness_score     Int      // 0-100
+  performance_score   Int      // 0-100
+  optimization_score  Int      // 0-100
+  status              String   // "fresh", "needs_refresh", "outdated"
+  content_hash        String?  // For detecting changes
+  created_at          DateTime @default(now())
+  updated_at          DateTime @updatedAt
+  
+  @@map("content_inventory")
+}
+
+model FreshnessIssue {
+  id                  String   @id @default(cuid())
+  content_id          String?
+  type                String   // "outdated_statistics", "broken_links", "missing_trends", "old_references", "expired_information"
+  severity            String   // "high", "medium", "low"
+  description         String
+  location            String
+  suggestion          String
+  impact              Int      // 0-100
+  is_resolved         Boolean  @default(false)
+  created_at          DateTime @default(now())
+  
+  @@map("freshness_issues")
+}
+
+model CompetitorAnalysis {
+  id                  String   @id @default(cuid())
+  user_id             String?
+  competitor_url      String
+  competitor_name     String
+  title               String
+  domain              String
+  word_count          Int
+  publish_date        DateTime?
+  content_score       Int      // 0-100
+  seo_score           Int      // 0-100
+  readability_score   Int      // 0-100
+  engagement_score    Int      // 0-100
+  backlinks           Int
+  social_shares       Int
+  ranking             Int?
+  analysis_data       Json     // Complete analysis data
+  created_at          DateTime @default(now())
+  
+  @@map("competitor_analyses")
+}
+
+model ContentGap {
+  id                  String   @id @default(cuid())
+  analysis_id         String?
+  type                String   // "missing_topic", "content_depth", "format_opportunity", "keyword_gap", "multimedia_gap"
+  title               String
+  description         String
+  priority            String   // "high", "medium", "low"
+  competitor_count    Int
+  estimated_impact    Int      // 0-100
+  is_addressed        Boolean  @default(false)
+  created_at          DateTime @default(now())
+  
+  @@map("content_gaps")
+}
+
+model RefreshRecommendation {
+  id                  String   @id @default(cuid())
+  content_id          String?
+  type                String   // "update_statistics", "add_new_section", "improve_readability", "add_examples", "update_keywords", "add_multimedia", "improve_eeat", "update_references"
+  priority            String   // "high", "medium", "low"
+  description         String
+  impact              Int      // 0-100
+  effort              Int      // 0-100
+  estimated_time      String   // "2 hours", "1 day", etc.
+  implementation_steps Json   // Array of implementation steps
+  is_implemented     Boolean  @default(false)
+  created_at          DateTime @default(now())
+  
+  @@map("refresh_recommendations")
+}
+
+model PerformanceMetric {
+  id                  String   @id @default(cuid())
+  content_id          String?
+  date                DateTime
+  page_views          Int
+  organic_traffic     Int
+  bounce_rate         Float
+  time_on_page        Int      // in seconds
+  conversions         Int
+  keyword_rankings    Int
+  social_shares       Int
+  engagement_rate     Float
+  conversion_rate     Float
+  additional_metrics  Json     // Additional custom metrics
+  created_at          DateTime @default(now())
+  
+  @@map("performance_metrics")
+}
+
+model ContentScore {
+  id                  String   @id @default(cuid())
+  content_id          String?
+  score_type          String   // "quality", "seo", "readability", "engagement", "comprehensive"
+  score               Int      // 0-100
+  max_score           Int      // Usually 100
+  breakdown           Json     // Detailed score breakdown
+  factors             Json     // Factors affecting the score
+  created_at          DateTime @default(now())
+  
+  @@map("content_scores")
+}
+
+// Multimodal Media Models
+model MediaItem {
+  id                  String   @id @default(cuid())
+  user_id             String?
+  type                String   // "video", "audio", "image", "podcast"
+  title               String
+  url                 String?
+  file_path           String?
+  file_size           Int      // in bytes
+  duration            Int?     // in seconds
+  format              String
+  resolution          String?  // "1920x1080"
+  bitrate             Int?     // in kbps
+  optimization_score  Int      // 0-100
+  seo_score           Int      // 0-100
+  accessibility_score Int      // 0-100
+  performance_score   Int      // 0-100
+  status              String   // "optimized", "needs_optimization", "not_optimized"
+  last_optimized      DateTime?
+  metadata            Json     // Additional metadata
+  created_at          DateTime @default(now())
+  updated_at          DateTime @updatedAt
+  
+  @@map("media_items")
+}
+
+model MediaOptimization {
+  id                  String   @id @default(cuid())
+  media_id            String?
+  type                String   // "compression", "format_conversion", "metadata_enhancement", "alt_text_generation", "transcription", "chapter_markers", "quality_enhancement"
+  priority            String   // "high", "medium", "low"
+  description         String
+  impact              Int      // 0-100
+  effort              Int      // 0-100
+  estimated_time      String   // "10 minutes", "1 hour", etc.
+  implementation_steps Json   // Array of implementation steps
+  is_implemented     Boolean  @default(false)
+  created_at          DateTime @default(now())
+  
+  @@map("media_optimizations")
+}
+
+model MediaTranscription {
+  id                  String   @id @default(cuid())
+  media_id            String?
+  language            String   // "en", "es", etc.
+  transcription       String   // Full transcription text
+  confidence          Float    // 0.0-1.0
+  duration            Int      // in seconds
+  word_count          Int
+  captions            Json     // Caption data with timestamps
+  chapters            Json     // Chapter markers with timestamps
+  is_verified         Boolean  @default(false)
+  created_at          DateTime @default(now())
+  
+  @@map("media_transcriptions")
+}
+
+model MediaPerformance {
+  id                  String   @id @default(cuid())
+  media_id            String?
+  platform            String   // "youtube", "spotify", "website", etc.
+  date                DateTime
+  views               Int?
+  plays               Int?
+  engagement          Float?   // 0.0-100.0
+  completion_rate     Float?   // 0.0-100.0
+  shares              Int?
+  likes               Int?
+  comments            Int?
+  ctr                 Float?   // Click-through rate
+  conversion_rate     Float?   // 0.0-100.0
+  watch_time          Int?     // in seconds
+  retention_rate      Float?   // 0.0-100.0
+  additional_metrics  Json     // Platform-specific metrics
+  created_at          DateTime @default(now())
+  
+  @@map("media_performance")
+}
+
+model MediaAltText {
+  id                  String   @id @default(cuid())
+  media_id            String?
+  alt_text            String
+  description         String
+  keywords            Json     // Array of keywords
+  confidence          Float    // 0.0-1.0
+  language            String   // "en", "es", etc.
+  is_ai_generated     Boolean  @default(true)
+  is_approved         Boolean  @default(false)
+  created_at          DateTime @default(now())
+  
+  @@map("media_alt_text")
+}

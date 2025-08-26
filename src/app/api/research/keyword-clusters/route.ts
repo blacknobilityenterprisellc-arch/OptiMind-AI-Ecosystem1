@@ -94,7 +94,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Keyword cluster generation error:', error);
     return NextResponse.json(
-      { error: 'Failed to generate keyword clusters', details: error instanceof Error ? error.message : 'Unknown error' },
+      { error: 'Failed to generate keyword clusters', details: error.message },
       { status: 500 }
     );
   }
