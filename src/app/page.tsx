@@ -1,574 +1,300 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Badge } from '@/components/ui/badge';
 import { 
+  Wand2, 
+  MessageSquare, 
+  Code, 
   Search, 
-  Target, 
-  Globe, 
-  Zap, 
-  Shield, 
   BarChart3, 
-  Image as ImageIcon, 
   FileText,
-  Users,
-  Star,
-  ArrowRight,
-  CheckCircle,
-  TrendingUp,
+  Bot,
   Brain,
-  Settings,
-  Crown,
-  User
-} from "lucide-react";
-import AIPoweredResearchStrategy from "@/components/AIPoweredResearchStrategy";
-import ContentOptimizationRefresh from "@/components/ContentOptimizationRefresh";
-import NonTextMultimodalOptimization from "@/components/NonTextMultimodalOptimization";
+  Zap,
+  Target,
+  Star,
+  TrendingUp,
+  Activity,
+  Lightbulb
+} from 'lucide-react';
+
+// Import all the AI components we've created
+import { ContentGenerator } from '@/components/ui/content-generator';
+import { SmartForm } from '@/components/ui/smart-form';
+import { AIChat } from '@/components/ui/ai-chat';
+import { CodeAssistant } from '@/components/ui/code-assistant';
+import { SmartSearch } from '@/components/ui/smart-search';
+import { DataAnalysis } from '@/components/ui/data-analysis';
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState("seo");
+  const [activeTab, setActiveTab] = useState('overview');
 
   const features = [
     {
-      icon: Search,
-      title: "SEO Optimization",
-      description: "Advanced search engine optimization with AI-powered keyword research and content analysis",
-      color: "text-green-600",
-      bgColor: "bg-green-50"
+      id: 'content',
+      title: 'AI Content Generation',
+      description: 'Generate high-quality content for blogs, articles, social media, and more',
+      icon: <Wand2 className="h-8 w-8" />,
+      color: 'bg-blue-500',
+      component: <ContentGenerator />
     },
     {
-      icon: Target,
-      title: "AEO Enhancement",
-      description: "Answer Engine Optimization to dominate voice search and featured snippets",
-      color: "text-blue-600",
-      bgColor: "bg-blue-50"
+      id: 'forms',
+      title: 'Smart Forms',
+      description: 'AI-powered form validation and text enhancement',
+      icon: <FileText className="h-8 w-8" />,
+      color: 'bg-green-500',
+      component: <SmartForm />
     },
     {
-      icon: Globe,
-      title: "GEO Targeting",
-      description: "Generalized Engine Optimization for comprehensive digital presence management",
-      color: "text-purple-600",
-      bgColor: "bg-purple-50"
+      id: 'chat',
+      title: 'AI Chat Assistant',
+      description: 'Real-time chat with multiple AI models and session management',
+      icon: <MessageSquare className="h-8 w-8" />,
+      color: 'bg-purple-500',
+      component: <AIChat />
     },
     {
-      icon: ImageIcon,
-      title: "AI Photo Enhancement",
-      description: "Intelligent image enhancement and user-controlled content analysis",
-      color: "text-orange-600",
-      bgColor: "bg-orange-50"
+      id: 'code',
+      title: 'Code Assistant',
+      description: 'Code review, optimization, documentation, and debugging',
+      icon: <Code className="h-8 w-8" />,
+      color: 'bg-orange-500',
+      component: <CodeAssistant />
     },
     {
-      icon: FileText,
-      title: "Content Creation",
-      description: "AI-powered content generation optimized for engagement and conversions",
-      color: "text-indigo-600",
-      bgColor: "bg-indigo-50"
+      id: 'search',
+      title: 'Smart Search & Recommendations',
+      description: 'AI-powered search and personalized recommendations',
+      icon: <Search className="h-8 w-8" />,
+      color: 'bg-red-500',
+      component: <SmartSearch />
     },
     {
-      icon: Shield,
-      title: "Privacy Controls",
-      description: "User-controlled privacy settings and customizable content preferences",
-      color: "text-red-600",
-      bgColor: "bg-red-50"
-    },
-    {
-      icon: Brain,
-      title: "AIO Optimization",
-      description: "Artificial Intelligence Optimization for advanced automation and intelligent workflows",
-      color: "text-cyan-600",
-      bgColor: "bg-cyan-50"
+      id: 'analytics',
+      title: 'Data Analysis',
+      description: 'Analyze data and extract insights with AI',
+      icon: <BarChart3 className="h-8 w-8" />,
+      color: 'bg-indigo-500',
+      component: <DataAnalysis />
     }
   ];
 
-  const stats = [
-    { label: "Active Users", value: "50K+", icon: Users },
-    { label: "Content Optimized", value: "2M+", icon: FileText },
-    { label: "Success Rate", value: "98%", icon: TrendingUp },
-    { label: "Customer Rating", value: "4.9/5", icon: Star }
-  ];
-
-  const testimonials = [
+  const benefits = [
     {
-      name: "Sarah Johnson",
-      role: "Marketing Director",
-      company: "TechCorp Inc.",
-      content: "OptiMind AI transformed our SEO strategy. Our organic traffic increased by 300% in just 3 months!",
-      rating: 5
+      title: 'Multiple AI Models',
+      description: 'Access to 300+ AI models from OpenAI, Anthropic, Google, Meta, and more',
+      icon: <Bot className="h-6 w-6" />
     },
     {
-      name: "Michael Chen",
-      role: "Content Manager",
-      company: "Digital Agency Pro",
-      content: "The AI-powered content creation tools are incredible. We've cut content production time by 70% while improving quality.",
-      rating: 5
+      title: 'Cost Optimization',
+      description: 'Choose the right model for each task to optimize costs and performance',
+      icon: <Target className="h-6 w-6" />
     },
     {
-      name: "Emily Rodriguez",
-      role: "E-commerce Manager",
-      company: "ShopGlobal",
-      content: "The GEO targeting features helped us expand into 5 new international markets. Absolutely essential for global growth.",
-      rating: 5
+      title: 'Real-time Processing',
+      description: 'Instant AI responses with streaming support for live interactions',
+      icon: <Zap className="h-6 w-6" />
+    },
+    {
+      title: 'Intelligent Analysis',
+      description: 'Advanced AI capabilities for complex reasoning and problem-solving',
+      icon: <Brain className="h-6 w-6" />
+    },
+    {
+      title: 'Versatile Applications',
+      description: 'From content creation to code analysis, cover all your AI needs',
+      icon: <Star className="h-6 w-6" />
+    },
+    {
+      title: 'Data-Driven Insights',
+      description: 'Extract meaningful insights from your data with AI analysis',
+      icon: <TrendingUp className="h-6 w-6" />
     }
   ];
+
+  const getFeatureComponent = (featureId: string) => {
+    const feature = features.find(f => f.id === featureId);
+    return feature?.component || null;
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="container mx-auto px-4 py-20 lg:py-32">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <Badge variant="secondary" className="px-4 py-2 text-sm font-medium">
-                  <Zap className="w-4 h-4 mr-2" />
-                  Inclusive AI Platform
-                </Badge>
-                <h1 className="text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                  Advanced Intelligence for All Creators
-                </h1>
-                <p className="text-xl text-muted-foreground leading-relaxed">
-                  Powerful SEO, AEO, GEO, and AIO optimization with user-controlled privacy and content preferences. 
-                  Create, optimize, and scale your digital presence with intelligent automation that respects your choices.
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+      {/* Header */}
+      <div className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="relative w-10 h-10">
+                <img
+                  src="/logo.svg"
+                  alt="Z.ai Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold">Open Router AI Platform</h1>
+                <p className="text-sm text-muted-foreground">Powered by 300+ AI models</p>
+              </div>
+            </div>
+            <Badge variant="secondary" className="text-sm">
+              Next.js 15 + TypeScript
+            </Badge>
+          </div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 py-8">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <TabsList className="grid w-full grid-cols-7 mb-8">
+            <TabsTrigger value="overview">Overview</TabsTrigger>
+            {features.map((feature) => (
+              <TabsTrigger key={feature.id} value={feature.id} className="text-xs">
+                {feature.title.split(' ')[0]}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          {/* Overview Tab */}
+          <TabsContent value="overview" className="space-y-8">
+            {/* Hero Section */}
+            <div className="text-center py-12">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Open Router AI Platform
+              </h1>
+              <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+                Experience the power of 300+ AI models integrated into a single platform. 
+                From content generation to code analysis, discover how AI can transform your workflow.
+              </p>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Button size="lg" onClick={() => setActiveTab('content')}>
+                  <Wand2 className="mr-2 h-4 w-4" />
+                  Try Content Generation
+                </Button>
+                <Button size="lg" variant="outline" onClick={() => setActiveTab('chat')}>
+                  <MessageSquare className="mr-2 h-4 w-4" />
+                  Start AI Chat
+                </Button>
+              </div>
+            </div>
+
+            {/* Benefits Section */}
+            <div>
+              <h2 className="text-3xl font-bold text-center mb-8">Why Choose Open Router?</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {benefits.map((benefit, index) => (
+                  <Card key={index} className="text-center">
+                    <CardHeader>
+                      <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                        {benefit.icon}
+                      </div>
+                      <CardTitle className="text-lg">{benefit.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground">{benefit.description}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Features Grid */}
+            <div>
+              <h2 className="text-3xl font-bold text-center mb-8">AI-Powered Features</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {features.map((feature) => (
+                  <Card 
+                    key={feature.id} 
+                    className="cursor-pointer transition-all hover:shadow-lg hover:scale-105"
+                    onClick={() => setActiveTab(feature.id)}
+                  >
+                    <CardHeader>
+                      <div className={`w-12 h-12 rounded-lg ${feature.color} flex items-center justify-center mb-4`}>
+                        {feature.icon}
+                      </div>
+                      <CardTitle className="text-lg">{feature.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground mb-4">{feature.description}</p>
+                      <Button variant="outline" size="sm" className="w-full">
+                        Explore Feature
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Getting Started */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-2xl text-center">Getting Started</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                <p className="text-muted-foreground mb-6">
+                  To use the Open Router features, you need to set up your API key in the environment configuration.
                 </p>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="text-lg px-8 py-6">
-                  Get Started Free
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-                <Button variant="outline" size="lg" className="text-lg px-8 py-6">
-                  Schedule Demo
-                </Button>
-              </div>
-
-              <div className="flex items-center gap-8 pt-4">
-                <div className="flex -space-x-2">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="w-10 h-10 rounded-full bg-primary/10 border-2 border-background flex items-center justify-center text-sm font-medium">
-                      {i}
-                    </div>
-                  ))}
+                <div className="bg-muted p-4 rounded-lg text-left max-w-2xl mx-auto">
+                  <h4 className="font-semibold mb-2">Setup Instructions:</h4>
+                  <ol className="list-decimal list-inside space-y-1 text-sm">
+                    <li>Get your Open Router API key from <a href="https://openrouter.ai" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">openrouter.ai</a></li>
+                    <li>Add your API key to the <code className="bg-background px-1 rounded">.env.local</code> file:</li>
+                    <li><code className="bg-background px-2 py-1 rounded text-xs">OPENROUTER_API_KEY=your_api_key_here</code></li>
+                    <li>Restart your development server</li>
+                    <li>Start exploring the AI features!</li>
+                  </ol>
                 </div>
-                <div className="text-sm text-muted-foreground">
-                  <span className="font-semibold text-foreground">50,000+</span> businesses trust OptiMind AI
-                </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
 
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-blue-500/20 rounded-3xl blur-3xl"></div>
-              <div className="relative bg-card border rounded-3xl p-8 shadow-2xl">
-                <div className="space-y-6">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold">Optimization Dashboard</h3>
-                    <Badge variant="outline">Live</Badge>
+          {/* Feature Tabs */}
+          {features.map((feature) => (
+            <TabsContent key={feature.id} value={feature.id} className="space-y-6">
+              <div className="mb-6">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className={`w-12 h-12 rounded-lg ${feature.color} flex items-center justify-center`}>
+                    {feature.icon}
                   </div>
-                  
-                  <div className="grid grid-cols-3 gap-4">
-                    {stats.slice(0, 3).map((stat, index) => (
-                      <div key={index} className="text-center p-4 bg-muted/50 rounded-lg">
-                        <stat.icon className="w-6 h-6 mx-auto mb-2 text-primary" />
-                        <div className="text-2xl font-bold">{stat.value}</div>
-                        <div className="text-xs text-muted-foreground">{stat.label}</div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm">SEO Score</span>
-                      <span className="text-sm font-medium">94%</span>
-                    </div>
-                    <div className="w-full bg-muted rounded-full h-2">
-                      <div className="bg-green-500 h-2 rounded-full" style={{ width: '94%' }}></div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm">Content Quality</span>
-                      <span className="text-sm font-medium">87%</span>
-                    </div>
-                    <div className="w-full bg-muted rounded-full h-2">
-                      <div className="bg-blue-500 h-2 rounded-full" style={{ width: '87%' }}></div>
-                    </div>
+                  <div>
+                    <h2 className="text-2xl font-bold">{feature.title}</h2>
+                    <p className="text-muted-foreground">{feature.description}</p>
                   </div>
                 </div>
+                <div className="flex gap-4">
+                  <Button variant="outline" onClick={() => setActiveTab('overview')}>
+                    ← Back to Overview
+                  </Button>
+                </div>
               </div>
+              {getFeatureComponent(feature.id)}
+            </TabsContent>
+          ))}
+        </Tabs>
+      </div>
+
+      {/* Footer */}
+      <footer className="border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 mt-16">
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center">
+            <p className="text-muted-foreground">
+              Powered by Open Router • 300+ AI Models • Next.js 15 + TypeScript
+            </p>
+            <div className="flex justify-center gap-4 mt-4">
+              <Badge variant="outline">OpenAI</Badge>
+              <Badge variant="outline">Anthropic</Badge>
+              <Badge variant="outline">Google</Badge>
+              <Badge variant="outline">Meta</Badge>
+              <Badge variant="outline">Mistral</Badge>
+              <Badge variant="outline">+ more</Badge>
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-16">
-            <h2 className="text-4xl font-bold">Powerful AI-Driven Features</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Everything you need to optimize your digital presence with user-controlled AI tools that respect your creative freedom
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md">
-                <CardHeader>
-                  <div className={`w-12 h-12 rounded-lg ${feature.bgColor} flex items-center justify-center mb-4`}>
-                    <feature.icon className={`w-6 h-6 ${feature.color}`} />
-                  </div>
-                  <CardTitle className="text-xl">{feature.title}</CardTitle>
-                  <CardDescription className="text-base">
-                    {feature.description}
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Optimization Tabs */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-16">
-            <h2 className="text-4xl font-bold">Comprehensive Optimization Solutions</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Specialized AI tools for every aspect of your digital optimization needs, with user-controlled preferences
-            </p>
-          </div>
-
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="max-w-4xl mx-auto">
-            <TabsList className="grid w-full grid-cols-4">
-              <TabsTrigger value="seo">SEO</TabsTrigger>
-              <TabsTrigger value="aeo">AEO</TabsTrigger>
-              <TabsTrigger value="geo">GEO</TabsTrigger>
-              <TabsTrigger value="aio">AIO</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="seo" className="mt-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Search className="w-6 h-6 text-green-600" />
-                    SEO Optimization
-                  </CardTitle>
-                  <CardDescription>
-                    Dominate search rankings with our comprehensive SEO suite
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-4">
-                      <h4 className="font-semibold">Key Features:</h4>
-                      <ul className="space-y-2">
-                        {[
-                          "AI-powered keyword research",
-                          "Competitor analysis",
-                          "Content optimization",
-                          "Technical SEO audits",
-                          "Backlink strategy",
-                          "Performance tracking"
-                        ].map((item, i) => (
-                          <li key={i} className="flex items-center gap-2">
-                            <CheckCircle className="w-4 h-4 text-green-500" />
-                            <span className="text-sm">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="space-y-4">
-                      <h4 className="font-semibold">Results:</h4>
-                      <div className="space-y-3">
-                        <div className="flex justify-between">
-                          <span className="text-sm">Average ranking improvement</span>
-                          <span className="text-sm font-medium text-green-600">+45%</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-sm">Organic traffic growth</span>
-                          <span className="text-sm font-medium text-green-600">+180%</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-sm">Conversion rate increase</span>
-                          <span className="text-sm font-medium text-green-600">+65%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="aeo" className="mt-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Target className="w-6 h-6 text-blue-600" />
-                    AEO Enhancement
-                  </CardTitle>
-                  <CardDescription>
-                    Optimize for voice search and featured snippets
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-4">
-                      <h4 className="font-semibold">Key Features:</h4>
-                      <ul className="space-y-2">
-                        {[
-                          "Voice search optimization",
-                          "Featured snippet targeting",
-                          "Question-based content",
-                          "Natural language processing",
-                          "Schema markup generation",
-                          "Answer box optimization"
-                        ].map((item, i) => (
-                          <li key={i} className="flex items-center gap-2">
-                            <CheckCircle className="w-4 h-4 text-blue-500" />
-                            <span className="text-sm">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="space-y-4">
-                      <h4 className="font-semibold">Results:</h4>
-                      <div className="space-y-3">
-                        <div className="flex justify-between">
-                          <span className="text-sm">Featured snippets won</span>
-                          <span className="text-sm font-medium text-blue-600">+85%</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-sm">Voice search visibility</span>
-                          <span className="text-sm font-medium text-blue-600">+220%</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-sm">Answer box appearances</span>
-                          <span className="text-sm font-medium text-blue-600">+175%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="geo" className="mt-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Globe className="w-6 h-6 text-purple-600" />
-                    GEO Targeting
-                  </CardTitle>
-                  <CardDescription>
-                    Generalized Engine Optimization for comprehensive digital presence management
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-4">
-                      <h4 className="font-semibold">Key Features:</h4>
-                      <ul className="space-y-2">
-                        {[
-                          "Comprehensive engine optimization",
-                          "Multi-platform integration",
-                          "Cross-system automation",
-                          "Advanced performance tuning",
-                          "Unified management dashboard",
-                          "Scalable infrastructure optimization"
-                        ].map((item, i) => (
-                          <li key={i} className="flex items-center gap-2">
-                            <CheckCircle className="w-4 h-4 text-purple-500" />
-                            <span className="text-sm">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="space-y-4">
-                      <h4 className="font-semibold">Results:</h4>
-                      <div className="space-y-3">
-                        <div className="flex justify-between">
-                          <span className="text-sm">System performance</span>
-                          <span className="text-sm font-medium text-purple-600">+195%</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-sm">Cross-platform efficiency</span>
-                          <span className="text-sm font-medium text-purple-600">+310%</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-sm">Infrastructure scalability</span>
-                          <span className="text-sm font-medium text-purple-600">+125%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="aio" className="mt-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Brain className="w-6 h-6 text-cyan-600" />
-                    AIO Optimization
-                  </CardTitle>
-                  <CardDescription>
-                    Artificial Intelligence Optimization for advanced automation and intelligent workflows
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-4">
-                      <h4 className="font-semibold">Key Features:</h4>
-                      <ul className="space-y-2">
-                        {[
-                          "Advanced AI automation",
-                          "Intelligent workflow optimization",
-                          "Multi-model ensemble analysis",
-                          "Predictive analytics",
-                          "User-controlled AI preferences",
-                          "Adaptive learning systems"
-                        ].map((item, i) => (
-                          <li key={i} className="flex items-center gap-2">
-                            <CheckCircle className="w-4 h-4 text-cyan-500" />
-                            <span className="text-sm">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="space-y-4">
-                      <h4 className="font-semibold">Results:</h4>
-                      <div className="space-y-3">
-                        <div className="flex justify-between">
-                          <span className="text-sm">Automation efficiency</span>
-                          <span className="text-sm font-medium text-cyan-600">+85%</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-sm">Workflow optimization</span>
-                          <span className="text-sm font-medium text-cyan-600">+220%</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-sm">AI decision accuracy</span>
-                          <span className="text-sm font-medium text-cyan-600">+175%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
-        </div>
-      </section>
-
-      {/* AI-Powered Research & Strategy Module */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <AIPoweredResearchStrategy />
-        </div>
-      </section>
-
-      {/* Module 2: Content Optimization & Refresh */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <ContentOptimizationRefresh />
-        </div>
-      </section>
-
-      {/* Module 3: Non-Text & Multimodal Optimization */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <NonTextMultimodalOptimization />
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center space-y-4">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                  <stat.icon className="w-8 h-8 text-primary" />
-                </div>
-                <div className="text-4xl font-bold">{stat.value}</div>
-                <div className="text-lg text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-16">
-            <h2 className="text-4xl font-bold">Trusted by Industry Leaders</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              See what our customers have to say about their success with OptiMind AI
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="h-full">
-                <CardHeader>
-                  <div className="flex items-center gap-1 mb-2">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                  <CardDescription className="text-base leading-relaxed">
-                    "{testimonial.content}"
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                      <span className="text-sm font-medium">{testimonial.name.charAt(0)}</span>
-                    </div>
-                    <div>
-                      <div className="font-medium">{testimonial.name}</div>
-                      <div className="text-sm text-muted-foreground">{testimonial.role}</div>
-                      <div className="text-sm text-muted-foreground">{testimonial.company}</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-primary/90 text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto space-y-8">
-            <h2 className="text-4xl font-bold">
-              Ready to Transform Your Digital Strategy?
-            </h2>
-            <p className="text-xl opacity-90">
-              Join thousands of businesses that are already using OptiMind AI to dominate their digital presence.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" className="text-lg px-8 py-6">
-                Start Free Trial
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
-                Book a Demo
-              </Button>
-            </div>
-            <p className="text-sm opacity-75">
-              No credit card required • 14-day free trial • Cancel anytime
-            </p>
-          </div>
-        </div>
-      </section>
+      </footer>
     </div>
   );
 }
