@@ -1,49 +1,60 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Z.ai Code Scaffold - AI-Powered Development",
-  description: "Modern Next.js scaffold optimized for AI-powered development with Z.ai. Built with TypeScript, Tailwind CSS, and shadcn/ui.",
-  keywords: ["Z.ai", "Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui", "AI development", "React"],
-  authors: [{ name: "Z.ai Team" }],
+  title: "OptiMind AI Ecosystem - Platinum Grade Enterprise AI Platform",
+  description: "Transform your enterprise with cutting-edge AI technology. Built for scale, security, and performance.",
+  keywords: [
+    "AI",
+    "Enterprise",
+    "Platform",
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "Prisma",
+    "Authentication",
+    "Real-time",
+    "Platinum Grade"
+  ],
+  authors: [{ name: "Black Nobility Enterprise LLC" }],
   openGraph: {
-    title: "Z.ai Code Scaffold",
-    description: "AI-powered development with modern React stack",
-    url: "https://chat.z.ai",
-    siteName: "Z.ai",
+    title: "OptiMind AI Ecosystem",
+    description: "Platinum Grade Enterprise AI Platform",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Z.ai Code Scaffold",
-    description: "AI-powered development with modern React stack",
+    title: "OptiMind AI Ecosystem",
+    description: "Platinum Grade Enterprise AI Platform",
   },
+  viewport: "width=device-width, initial-scale=1",
+  robots: "index, follow",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
-      >
-        {children}
-        <Toaster />
+      <body className={inter.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="min-h-screen bg-background font-sans antialiased">
+            {children}
+          </div>
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );
