@@ -30,3 +30,41 @@ model Post {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Repository {
+  id              String   @id @default(cuid())
+  name            String
+  url             String
+  defaultBranch   String
+  currentBranch   String
+  lastSyncedAt    DateTime @default(now())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model DiamondGradeAnalysis {
+  id                    String   @id @default(cuid())
+  projectType           String
+  industry              String
+  targetAudience        String
+  businessGoals         String
+  technicalRequirements String
+  constraints           String
+  successMetrics        String
+  selectedModel         String
+  contextScore          Int
+  complexityScore       Int
+  feasibilityScore      Int
+  innovationScore       Int
+  riskScore             Int
+  successProbability    Int
+  recommendations        String   // JSON
+  criticalPath          String   // JSON
+  detailedAnalysis      String   // JSON
+  consensusData         String?  // JSON
+  searchData            String?  // JSON
+  contextualAnalysis    String?
+  timestamp             DateTime
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
